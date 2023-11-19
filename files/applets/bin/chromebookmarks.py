@@ -4,7 +4,7 @@ from os import path
 import json
 import jq
 from os import path
-from subprocess import check_output, run, STDOUT
+from subprocess import check_output, run
 from subprocess import CalledProcessError
 from sys import argv
 
@@ -14,8 +14,7 @@ def main():
     options = "\n".join(["\t".join(a) for a in pairs])
 
     try:
-        theme= path.expanduser("~") +"/.config/rofi/launchers/type-5/style-1.rasi"
-        selection = check_output(['rofi', '-i', '-dmenu', '-theme', theme],
+        selection = check_output(['rofi', '-i', '-dmenu'],
                                  input=options.encode()
                                  ).decode().strip()
         url = selection.split('\t')[1]
