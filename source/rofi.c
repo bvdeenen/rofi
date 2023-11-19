@@ -1065,6 +1065,11 @@ int main(int argc, char *argv[]) {
     }
   }
   find_arg_str("-theme", &(config.theme));
+
+  if(getenv("ROFI_THEME_OVERRIDE")) {
+    config.theme = getenv("ROFI_THEME_OVERRIDE");
+    g_debug("Overriding theme with ROFI_THEME_OVERRIDE=%s", config.theme);
+  }
   if (config.theme) {
     TICK_N("Parse theme");
     rofi_theme_reset();
